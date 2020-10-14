@@ -59,9 +59,9 @@ public class Record {
          str = str + ch;
          len = str.length();
 
-         if (ii > 4) {
+         if(ii > 4) {
             str2 = str.substring(len-4 , len-1);
-            if (str2.equals(";;;"))
+            if(str2.equals(";;;"))
                 break;
          }
          ii++;
@@ -74,7 +74,7 @@ public class Record {
 
       recordTokens = new String[7];
 
-      if (tokens.countTokens() >= 4) {
+      if(tokens.countTokens() >= 4) {
          sysPrint( "ReadRec() 5: The number of tokens is " + tokens.countTokens());
          ii = 2;
 
@@ -107,14 +107,14 @@ public class Record {
     public StringBuffer fill (String str, StringBuffer buf , int len) {
        String strTwo = new String("                     "  + "                                             ");
 
-       if (str != null) {
+       if(str != null) {
           buf.setLength(len);
           buf = new StringBuffer(str + strTwo);
        } else {
           buf = new StringBuffer(strTwo);
        }
 
-       if (len == 0) {
+       if(len == 0) {
           buf.setLength(45);
        } else {
           buf.setLength(len);
@@ -287,7 +287,7 @@ public class Record {
      * @param str the str
      */
     public void sysPrint(String str ) {
-      if (myDebug) {
+      if(myDebug) {
          System.out.println(str);
       }
    }
