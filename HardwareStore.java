@@ -575,52 +575,52 @@ public class HardwareStore extends JFrame implements ActionListener {
       String df = null, title = null;
 
       switch (str) {
-         case "Lawn Mowers" -> {
+         case "Lawn Mowers" : {
             df = "lawnmower.dat";
             aFile = new File("lawnmower.dat");
             title = "Hardware Store: Lawn Mowers";
          }
-         case "Lawn Tractor Mowers" -> {
+         case "Lawn Tractor Mowers" : {
             df = "lawnTractor.dat";
             aFile = new File("lawnTractor.dat");
             title = "Hardware Store: Lawn Tractor Mowers";
          }
-         case "Hand Drill Tools" -> {
+         case "Hand Drill Tools" : {
             df = "handDrill.dat";
             aFile = new File("handDrill.dat");
             title = "Hardware Store:  Hand Drill Tools";
          }
-         case "Drill Press Power Tools" -> {
+         case "Drill Press Power Tools" : {
             df = "drillPress.dat";
             aFile = new File("drillPress.dat");
             title = "Hardware Store: Drill Press Power Tools";
          }
-         case "Circular Saws" -> {
+         case "Circular Saws" : {
             df = "circularSaw.dat";
             aFile = new File("circularSaw.dat");
             title = "Hardware Store: Circular Saws";
          }
-         case "Hammers" -> {
+         case "Hammers" : {
             df = "hammer.dat";
             aFile = new File("hammer.dat");
             title = "Hardware Store: Hammers";
          }
-         case "Table Saws" -> {
+         case "Table Saws" : {
             df = "tableSaw.dat";
             aFile = new File("tableSaw.dat");
             title = "Hardware Store: Table Saws";
          }
-         case "Band Saws" -> {
+         case "Band Saws" : {
             df = "bandSaw.dat";
             aFile = new File("bandSaw.dat");
             title = "Hardware Store: Band Saws";
          }
-         case "Sanders" -> {
+         case "Sanders" : {
             df = "sanders.dat";
             aFile = new File("sanders.dat");
             title = "Hardware Store: Sanders";
          }
-         case "Staplers" -> {
+         case "Staplers" : {
             df = "stapler.dat";
             aFile = new File("stapler.dat");
             title = "Hardware Store: Staplers";
