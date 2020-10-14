@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.stream.IntStream;
 
+/**
+ * The type Hardware store.
+ */
 public class HardwareStore extends JFrame implements ActionListener {
    private PassWord pWord;
    private UpdateRec update;
@@ -37,6 +40,9 @@ public class HardwareStore extends JFrame implements ActionListener {
    private File aFile;
    private JButton cancel, refresh;
    private boolean myDebug = false;
+   /**
+    * The Hws.
+    */
    HardwareStore hws;
 
    private final String[] columnNames = {"Record ID", "Type of tool",
@@ -46,6 +52,9 @@ public class HardwareStore extends JFrame implements ActionListener {
    private final Container c;
    private int numEntries = 0, ZERO;
 
+   /**
+    * Instantiates a new Hardware store.
+    */
    public HardwareStore() {
       super("Hardware Store: Lawn Mower ");
 
@@ -340,7 +349,6 @@ public class HardwareStore extends JFrame implements ActionListener {
       };
       InitRecord("stapler.dat", stapler, 15);
 
-
       setup();
 
       addWindowListener(new WindowHandler(this));
@@ -348,6 +356,9 @@ public class HardwareStore extends JFrame implements ActionListener {
       setVisible(true);
    }
 
+   /**
+    * Sets menu.
+    */
    public void setupMenu() {
       JMenuBar menuBar = new JMenuBar();
       setJMenuBar(menuBar);
@@ -396,7 +407,6 @@ public class HardwareStore extends JFrame implements ActionListener {
       sandMI = new JMenuItem("Sanders");
       viewMenu.add(sandMI);
       sandMI.addActionListener(menuHandler);
-
 
       stapMI = new JMenuItem("Staplers");
       viewMenu.add(stapMI);
@@ -459,14 +469,13 @@ public class HardwareStore extends JFrame implements ActionListener {
       menuBar.add(aboutMenu);
    }
 
+   /**
+    * Sets .
+    */
    public void setup() {
       data = new Record();
 
       try {
-            /* Divide the length of the file by the record size to
-               determine the number of records in the file
-             */
-
          file = new RandomAccessFile("lawnmower.dat", "rw");
          aFile = new File("lawnmower.dat");
          numEntries = toArray(file, pData);
@@ -505,6 +514,13 @@ public class HardwareStore extends JFrame implements ActionListener {
       pWord = new PassWord(this);
    }
 
+   /**
+    * Init record.
+    *
+    * @param fileDat    the file dat
+    * @param FileRecord the file record
+    * @param loopCtl    the loop ctl
+    */
    public void InitRecord(String fileDat, String[][] FileRecord, int loopCtl) {
 
       aFile = new File(fileDat);
@@ -549,6 +565,11 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
    }
 
+   /**
+    * Display.
+    *
+    * @param str the str
+    */
    public void display(String str) {
 
       String df = null, title = null;
@@ -607,11 +628,6 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
 
       try {
-         /* Open the .dat file in RW mode.
-          *  If the file does not exist, create it
-          *  and initialize it to 250 empty records.
-          */
-
          sysPrint("display(): 1a - checking to see if " + df + " exists.");
          if (!aFile.exists()) {
 
@@ -634,6 +650,12 @@ public class HardwareStore extends JFrame implements ActionListener {
 
    }
 
+   /**
+    * Redisplay.
+    *
+    * @param file the file
+    * @param a    the a
+    */
    public void Redisplay(RandomAccessFile file, String[][] a) {
 
       IntStream.range(0, numEntries + 5).forEach(ii -> {
@@ -668,6 +690,9 @@ public class HardwareStore extends JFrame implements ActionListener {
          cleanup();
    }
 
+   /**
+    * Cleanup.
+    */
    public void cleanup() {
       try {
          file.close();
@@ -679,11 +704,17 @@ public class HardwareStore extends JFrame implements ActionListener {
       System.exit(0);
    }
 
+   /**
+    * Display delete dialog.
+    */
    public void displayDeleteDialog() {
       sysPrint("The Delete Record Dialog was made visible.\n");
       deleteRec.setVisible(true);
    }
 
+   /**
+    * Display update dialog.
+    */
    public void displayUpdateDialog() {
       sysPrint("The Update Record Dialog was made visible.\n");
       JOptionPane.showMessageDialog(null,
@@ -693,20 +724,38 @@ public class HardwareStore extends JFrame implements ActionListener {
       update.setVisible(true);
    }
 
+   /**
+    * Display add dialog.
+    */
    public void displayAddDialog() {
       sysPrint("The New/Add Record Dialog was made visible.\n");
       NewRec newRec = new NewRec(hws, file, table, pData);
       newRec.setVisible(true);
    }
 
+   /**
+    * Sets entries.
+    *
+    * @param ent the ent
+    */
    public void setEntries(int ent) {
       numEntries = ent;
    }
 
+   /**
+    * Gets entries.
+    *
+    * @return the entries
+    */
    public int getEntries() {
       return numEntries;
    }
 
+   /**
+    * Sys print.
+    *
+    * @param str the str
+    */
    public void sysPrint(String str) {
       if (myDebug) {
          System.out.println(str);
@@ -725,6 +774,10 @@ public class HardwareStore extends JFrame implements ActionListener {
     * 1- Setup method of the HardwareStore class
     * 2- Redisplay() method
     * *****************************************************************
+    *
+    * @param file the file
+    * @param a    the a
+    * @return the int
     */
    public int toArray(RandomAccessFile file, String[][] a) {
 
@@ -786,10 +839,18 @@ public class HardwareStore extends JFrame implements ActionListener {
    }
 
 
+   /**
+    * The entry point of application.
+    *
+    * @param args the input arguments
+    */
    public static void main(String[] args) {
       new HardwareStore().hws = new HardwareStore();
    }
 
+   /**
+    * The type Menu handler.
+    */
    public class MenuHandler implements ActionListener {
       public void actionPerformed(ActionEvent e) {
 
@@ -903,9 +964,20 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
    }
 
+   /**
+    * The type Window handler.
+    */
    public static class WindowHandler extends WindowAdapter {
+      /**
+       * The H.
+       */
       HardwareStore h;
 
+      /**
+       * Instantiates a new Window handler.
+       *
+       * @param s the s
+       */
       public WindowHandler(HardwareStore s) {
          h = s;
       }
@@ -915,6 +987,9 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
    }
 
+   /**
+    * The type Pass word.
+    */
    public static class PassWord extends Dialog
            implements ActionListener {
 
@@ -924,6 +999,11 @@ public class HardwareStore extends JFrame implements ActionListener {
       private final HardwareStore hwStore;
       private String whichDialog;
 
+      /**
+       * Instantiates a new Pass word.
+       *
+       * @param hw_Store the hw store
+       */
       public PassWord(HardwareStore hw_Store) {
          super(new Frame(), "Password Check", true);
 
@@ -960,6 +1040,11 @@ public class HardwareStore extends JFrame implements ActionListener {
 
       }
 
+      /**
+       * Display dialog.
+       *
+       * @param which_Dialog the which dialog
+       */
       public void displayDialog(String which_Dialog) {
          whichDialog = which_Dialog;
          userID.setText("admin");
@@ -1018,11 +1103,30 @@ public class HardwareStore extends JFrame implements ActionListener {
 
    }
 
+   /**
+    * The type Mouse clicked handler.
+    */
    public class MouseClickedHandler extends MouseAdapter {
+      /**
+       * The Table.
+       */
       JTable table;
+      /**
+       * The P data.
+       */
       String[][] pData;
+      /**
+       * The F.
+       */
       RandomAccessFile f;
 
+      /**
+       * Instantiates a new Mouse clicked handler.
+       *
+       * @param fPassed     the f passed
+       * @param tablePassed the table passed
+       * @param p_Data      the p data
+       */
       MouseClickedHandler(RandomAccessFile fPassed, JTable tablePassed,
                           String[][] p_Data) {
          table = tablePassed;
@@ -1045,6 +1149,9 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
    }
 
+   /**
+    * The type Update rec.
+    */
    public class UpdateRec extends Dialog implements ActionListener {
       private RandomAccessFile file;
       private JTextField recID, toolType, brandName, toolDesc,
@@ -1055,6 +1162,13 @@ public class HardwareStore extends JFrame implements ActionListener {
       private final String[][] pData;
       private final HardwareStore hwstore;
 
+      /**
+       * Instantiates a new Update rec.
+       *
+       * @param hw_store the hw store
+       * @param f        the f
+       * @param p_Data   the p data
+       */
       public UpdateRec(HardwareStore hw_store, RandomAccessFile f,
                        String[][] p_Data) {
          super(new Frame(), "Update Record", true);
@@ -1067,6 +1181,9 @@ public class HardwareStore extends JFrame implements ActionListener {
          upDSetup();
       }
 
+      /**
+       * Sets fields.
+       */
       void setFields() {
          price = new JTextField(10);
 
@@ -1106,6 +1223,9 @@ public class HardwareStore extends JFrame implements ActionListener {
          data = new Record();
       }
 
+      /**
+       * Up d setup.
+       */
       public void upDSetup() {
 
          recID = new JTextField(10);
@@ -1117,6 +1237,12 @@ public class HardwareStore extends JFrame implements ActionListener {
          setFields();
       }
 
+      /**
+       * Check digit boolean.
+       *
+       * @param strVal the str val
+       * @return the boolean
+       */
       public boolean checkDigit(String strVal) {
 
          int strLength;
@@ -1244,6 +1370,9 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
    }
 
+   /**
+    * The type New rec.
+    */
    public static class NewRec extends Dialog implements ActionListener {
 
       private RandomAccessFile file;
@@ -1258,6 +1387,14 @@ public class HardwareStore extends JFrame implements ActionListener {
               "Quantity", "Price"};
       private final HardwareStore hwStore;
 
+      /**
+       * Instantiates a new New rec.
+       *
+       * @param hw_store the hw store
+       * @param f        the f
+       * @param tab      the tab
+       * @param p_Data   the p data
+       */
       public NewRec(HardwareStore hw_store, RandomAccessFile
               f, JTable tab, String[][] p_Data) {
 
@@ -1271,6 +1408,9 @@ public class HardwareStore extends JFrame implements ActionListener {
          newSetup();
       }
 
+      /**
+       * Sets fields.
+       */
       void setFields() {
          price = new JTextField(10);
 
@@ -1308,6 +1448,9 @@ public class HardwareStore extends JFrame implements ActionListener {
          data = new Record();
       }
 
+      /**
+       * New setup.
+       */
       public void newSetup() {
          setSize(400, 250);
          setLayout(new GridLayout(9, 2));
@@ -1391,6 +1534,9 @@ public class HardwareStore extends JFrame implements ActionListener {
          }
       }
 
+      /**
+       * Sets record size.
+       */
       public void setRecordSize() {
          try {
             file = new RandomAccessFile(hwStore.aFile, "rw");
@@ -1411,6 +1557,9 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
    }
 
+   /**
+    * The type Delete rec.
+    */
    public class DeleteRec extends Dialog
            implements ActionListener {
       private RandomAccessFile file;
@@ -1421,6 +1570,13 @@ public class HardwareStore extends JFrame implements ActionListener {
       private final String[][] pData;
       private final HardwareStore hwStore;
 
+      /**
+       * Instantiates a new Delete rec.
+       *
+       * @param hw_store the hw store
+       * @param f        the f
+       * @param p_Data   the p data
+       */
       public DeleteRec(HardwareStore hw_store, RandomAccessFile f,
                        String[][] p_Data) {
 
@@ -1433,6 +1589,11 @@ public class HardwareStore extends JFrame implements ActionListener {
          delSetup();
       }
 
+      /**
+       * Sets action listener.
+       *
+       * @param recIDLabel the rec id label
+       */
       public void setActionListener(JLabel recIDLabel) {
          cancel = new JButton("Cancel");
 
@@ -1446,6 +1607,9 @@ public class HardwareStore extends JFrame implements ActionListener {
          add(cancel);
       }
 
+      /**
+       * Del setup.
+       */
       public void delSetup() {
          JLabel recIDLabel = new JLabel("Record ID");
          recID = new JTextField(10);
