@@ -14,8 +14,8 @@ public class Record {
    private String toolDesc  = "";
    private String partNum = "";
    private String cost = "";
-   private String recordTokens[];
-   private boolean myDebug = false;
+   private String[] recordTokens;
+   private final boolean myDebug = false;
    private long filePos;
    private long fileLen;
 
@@ -37,13 +37,13 @@ public class Record {
      * @throws IOException the io exception
      */
     public void ReadRec(RandomAccessFile file) throws IOException {
-      char f[] = new char[585], ch;
+      char ch;
       StringTokenizer tokens;
       String str = "", str2 = "";
       int ii = 0 , loopCtl = 585 , len = 0;
-      long remm = fileLen - filePos;
+      long rem = fileLen - filePos;
 
-      sysPrint("ReadRec() 1a: Remaining bytes is " + remm);
+      sysPrint("ReadRec() 1a: Remaining bytes is " + rem);
       sysPrint("ReadRec() 1b: Reading ints");
 
       recID    = file.readInt();
@@ -59,9 +59,9 @@ public class Record {
          str = str + ch;
          len = str.length();
 
-         if (ii > 4) {
+         if(ii > 4) {
             str2 = str.substring(len-4 , len-1);
-            if (str2.equals(";;;"))
+            if(str2.equals(";;;"))
                 break;
          }
          ii++;
@@ -74,21 +74,21 @@ public class Record {
 
       recordTokens = new String[7];
 
-      if (tokens.countTokens() >= 4) {
+      if(tokens.countTokens() >= 4) {
          sysPrint( "ReadRec() 5: The number of tokens is " + tokens.countTokens());
          ii = 2;
 
          /** Load the tokens into a string array. */
          while(ii < 7 ) {
-            recordTokens[ii] = tokens.nextToken().toString();
+            recordTokens[ii] = tokens.nextToken();
             ii++;
          }
 
-         toolType  = new String(recordTokens[2]);
-         brandName = new String(recordTokens[3]);
-         partNum   = new String(recordTokens[4]);
-         cost      = new String(recordTokens[5]);
-         toolDesc  = new String(recordTokens[6]);
+         toolType  = recordTokens[2];
+         brandName = recordTokens[3];
+         partNum   = recordTokens[4];
+         cost      = recordTokens[5];
+         toolDesc  = recordTokens[6];
       } else {
          sysPrint( "ReadRec() 6: There are no records to read.");
       }
@@ -105,16 +105,16 @@ public class Record {
      * @return the string buffer
      */
     public StringBuffer fill (String str, StringBuffer buf , int len) {
-       String strTwo = new String("                     "  + "                                             ");
+       String strTwo = "                     " + "                                             ";
 
-       if (str != null) {
+       if(str != null) {
           buf.setLength(len);
           buf = new StringBuffer(str + strTwo);
        } else {
           buf = new StringBuffer(strTwo);
        }
 
-       if (len == 0) {
+       if(len == 0) {
           buf.setLength(45);
        } else {
           buf.setLength(len);
@@ -137,7 +137,6 @@ public class Record {
       String str = "" , str2 = "";
 
       file.writeInt(recID);
-
       file.writeInt(quantity);
 
       str = str + toolType + ";;";
@@ -287,7 +286,7 @@ public class Record {
      * @param str the str
      */
     public void sysPrint(String str ) {
-      if (myDebug) {
+      if(myDebug) {
          System.out.println(str);
       }
    }
