@@ -1,42 +1,3 @@
-/*
-  **************************************************
-  File:  HardwareStore.java
-  <p>
-  This program reads a random access file sequentially,
-  updates data already written to the file, creates new
-  data to be placed in the file, and deletes data
-  already in the file.
-  <p>
-  <p>
-  Copyright (c) 2002-2003 Advanced Applications Total Applications Works.
-  (AATAW)  All Rights Reserved.
-  <p>
-  AATAW grants you ("Licensee") a non-exclusive, royalty free, license to use,
-  modify and redistribute this software in source and binary code form,
-  provided that i) this copyright notice and license appear on all copies of
-  the software; and ii) Licensee does not utilize the software in a manner
-  which is disparaging to AATAW.
-  <p>
-  This software is provided "AS IS," without a warranty of any kind. ALL
-  EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY
-  IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR
-  NON-INFRINGEMENT, ARE HEREBY EXCLUDED. AATAW AND ITS LICENSORS SHALL NOT BE
-  LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING
-  OR DISTRIBUTING THE SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL AATAW OR ITS
-  LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT,
-  INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER
-  CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF
-  OR INABILITY TO USE SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE
-  POSSIBILITY OF SUCH DAMAGES.
-  <p>
-  This software is not designed or intended for use in on-line control of
-  aircraft, air traffic, aircraft navigation or aircraft communications; or in
-  the design, construction, operation or maintenance of any nuclear
-  facility. Licensee represents and warrants that it will not use or
-  redistribute the Software for such purposes.
- */
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -45,23 +6,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.stream.IntStream;
 
-
-/*
- * <p>Title: HardwareStore </p>
- * <p>Description: The HardwareStore application is a program that is used to display
- * hardware items and it allows these items to be created, updated, and/or
- * deleted.</p>
- * <p>Copyright: Copyright (c)</p>
- * <p>Company: TAW</p>
- *
- * @author unascribed
- * @version 2.0
- */
-
-
-public class HardwareStore extends JFrame
-        implements ActionListener {
-
+public class HardwareStore extends JFrame implements ActionListener {
    private PassWord pWord;
    private UpdateRec update;
    private DeleteRec deleteRec;
