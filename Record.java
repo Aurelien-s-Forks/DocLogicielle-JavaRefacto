@@ -6,17 +6,18 @@ import java.util.*;
     *        a randomaccess file.
     * *******************************************************************/
 public class Record  {
-   private int recID ;
-   private int quantity ;
-   private String toolType = "" ;
-   private String brandName = ""  ;
-   private String toolDesc  = "" ;
-   private String partNum = ""  ;
-   private String cost = ""  ;
-   private String recordTokens[] ;
-   private boolean myDebug = false ;
-   private long filePos ;
-   private long fileLen ;
+
+   private int recID;
+   private int quantity;
+   private String toolType = "";
+   private String brandName = "";
+   private String toolDesc  = "";
+   private String partNum = "";
+   private String cost = "";
+   private String recordTokens[];
+   private boolean myDebug = false;
+   private long filePos;
+   private long fileLen;
 
    /** *******************************************************************
     *  Method: ReadRec() Reads a record from the specified RandomAccessFile.
@@ -35,56 +36,56 @@ public class Record  {
    public void ReadRec( RandomAccessFile file ) throws IOException
    {
       char f[] = new char[ 585 ], ch;
-      StringTokenizer tokens ;
-      String str = "", str2 = "" ;
+      StringTokenizer tokens;
+      String str = "", str2 = "";
       StringBuffer buf1  = new StringBuffer("");
-      int ii = 0 , loopCtl = 585 , len = 0 ;
-      long remm = fileLen - filePos ;
+      int ii = 0 , loopCtl = 585 , len = 0;
+      long remm = fileLen - filePos;
 
-      sysPrint( "ReadRec() 1a: Remaining bytes is " + remm ) ;
-      sysPrint( "ReadRec() 1b: Reading ints" ) ;
+      sysPrint( "ReadRec() 1a: Remaining bytes is " + remm );
+      sysPrint( "ReadRec() 1b: Reading ints" );
       recID    = file.readInt();
-      sysPrint( "ReadRec() 1c: recID  is " +  recID) ;
+      sysPrint( "ReadRec() 1c: recID  is " +  recID);
       quantity = file.readInt();
-      sysPrint( "ReadRec() 2: Reading string" ) ;
+      sysPrint( "ReadRec() 2: Reading string" );
 
-      /** Read characters until we get to ;;; which
+      /** Read characters until we get to;;; which
        *  indicates the end of the record */
       while ( ii < loopCtl ) {
-         ch =  file.readChar() ;
-         str = str + ch  ;
-         len = str.length() ;
+         ch =  file.readChar();
+         str = str + ch;
+         len = str.length();
 
          if ( ii > 4 ) {
-            str2 = str.substring( len-4 , len-1 ) ;
+            str2 = str.substring( len-4 , len-1 );
             if ( str2.equals( ";;;" ) )
-                break ;
+                break;
          }
-         ii++ ;
+         ii++;
       }
 
-      sysPrint( "ReadRec() 3a: str is " + str ) ;
-      sysPrint( "ReadRec() 3b: Reading string. ii =s " + ii ) ;
-      sysPrint(  "ReadRec() 4: The value of str is " + str ) ;
-      tokens = new StringTokenizer( str , ";;" ) ;
+      sysPrint( "ReadRec() 3a: str is " + str );
+      sysPrint( "ReadRec() 3b: Reading string. ii =s " + ii );
+      sysPrint(  "ReadRec() 4: The value of str is " + str );
+      tokens = new StringTokenizer( str , ";;" );
 
-      recordTokens = new String[ 7 ] ;
+      recordTokens = new String[ 7 ];
 
       if ( tokens.countTokens() >= 4 )   {
-         sysPrint( "ReadRec() 5: The number of tokens is " + tokens.countTokens() ) ;
-         ii = 2 ;
+         sysPrint( "ReadRec() 5: The number of tokens is " + tokens.countTokens() );
+         ii = 2;
 
          // Load the tokens into a string array
          while( ii < 7  )  {
-            recordTokens[ ii ] = tokens.nextToken().toString() ;
-            ii++ ;
+            recordTokens[ ii ] = tokens.nextToken().toString();
+            ii++;
          }
 
-         toolType  = new String( recordTokens[ 2 ] ) ;
-         brandName = new String( recordTokens[ 3 ] ) ;
-         partNum   = new String( recordTokens[ 4 ] ) ;
-         cost      = new String( recordTokens[ 5 ] ) ;
-         toolDesc  = new String( recordTokens[ 6 ] ) ;
+         toolType  = new String( recordTokens[ 2 ] );
+         brandName = new String( recordTokens[ 3 ] );
+         partNum   = new String( recordTokens[ 4 ] );
+         cost      = new String( recordTokens[ 5 ] );
+         toolDesc  = new String( recordTokens[ 6 ] );
       } else  {
          sysPrint(  "ReadRec() 6: There are no records to read." );
       }
@@ -95,7 +96,7 @@ public class Record  {
     *  blanks.
     ******************************************************** */
     public StringBuffer fill ( String str, StringBuffer buf , int len) {
-       String strTwo = new String( "                     "  + "                                             " ) ;
+       String strTwo = new String( "                     "  + "                                             " );
 
        if ( str != null ) {
           buf.setLength( len );
@@ -110,7 +111,7 @@ public class Record  {
           buf.setLength( len );
        }
 
-      return buf ;
+      return buf;
    }
 
    /** ************************************************************
@@ -122,18 +123,18 @@ public class Record  {
    public void write( RandomAccessFile file ) throws IOException
    {
       StringBuffer buf  = new StringBuffer( " " );
-      String str = "" , str2 = ""  ;
+      String str = "" , str2 = "";
 
       file.writeInt( recID );
       file.writeInt( quantity );
 
-      str = str + toolType + ";;" ;
-      str = str + brandName + ";;"  ;
-      str = str + partNum + ";;"  ;
-      str = str + cost  + ";;" ;
-      str = str + toolDesc + ";;;"  ;
+      str = str + toolType + ";;";
+      str = str + brandName + ";;";
+      str = str + partNum + ";;";
+      str = str + cost  + ";;";
+      str = str + toolDesc + ";;;";
 
-      buf = fill ( str , buf.delete(0, 451), 451 ) ;
+      buf = fill ( str , buf.delete(0, 451), 451 );
 
       file.writeChars( buf.toString() );
       sysPrint(  "write(): - The value of recID is " + recID );
