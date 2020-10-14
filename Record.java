@@ -257,5 +257,5 @@ public class Record  {
     * data types.
     *
     ***************************************************************** */
-   public static int getSize() { return 585; }
+   public static int getSize() { return 585; } 
 }
