@@ -1,10 +1,11 @@
 import java.io.*;
 import java.util.*;
 
-   /** *******************************************************************
-    * class: The Record class' purpose is to read and write records to
-    *        a randomaccess file.
-    * *******************************************************************/
+/**
+ * ******************************************************************
+ * class: The Record class' purpose is to read and write records to
+ * a randomaccess file.
+ */
 public class Record {
    private int recID;
    private int quantity;
@@ -18,21 +19,24 @@ public class Record {
    private long filePos;
    private long fileLen;
 
-   /** *******************************************************************
-    *  Method: ReadRec() Reads a record from the specified RandomAccessFile.
-    * 1- Read the first integer
-    * 2- Read the second integer
-    * 3- Read characters one at a time until we reach a string of
-    *    ';;;'. This indicates that we have reached the end of the
-    *    character string for this particular record.
-    * 4- Load the resulting string into a StringTokenizer object.
-    * 5- We are looking for 7 tokens, so if the token count is
-    *    greater than 4, we will tokenize the string.
-    * 6- The tokens are loaded into a string array and then into the
-    *    class variables.
-    ********************************************************** */
-
-   public void ReadRec(RandomAccessFile file) throws IOException {
+    /**
+     * ******************************************************************
+     * Method: ReadRec() Reads a record from the specified RandomAccessFile.
+     * 1- Read the first integer
+     * 2- Read the second integer
+     * 3- Read characters one at a time until we reach a string of
+     * ';;;'. This indicates that we have reached the end of the
+     * character string for this particular record.
+     * 4- Load the resulting string into a StringTokenizer object.
+     * 5- We are looking for 7 tokens, so if the token count is
+     * greater than 4, we will tokenize the string.
+     * 6- The tokens are loaded into a string array and then into the
+     * class variables.
+     *
+     * @param file the file
+     * @throws IOException the io exception
+     */
+    public void ReadRec(RandomAccessFile file) throws IOException {
       char f[] = new char[585], ch;
       StringTokenizer tokens;
       String str = "", str2 = "";
@@ -90,10 +94,16 @@ public class Record {
       }
    }
 
-   /** ********************************************************
-    *  The fill() method is used to fill in the passed string with
-    *  blanks.
-    ******************************************************** */
+    /**
+     * *******************************************************
+     * The fill() method is used to fill in the passed string with
+     * blanks.
+     *
+     * @param str the str
+     * @param buf the buf
+     * @param len the len
+     * @return the string buffer
+     */
     public StringBuffer fill (String str, StringBuffer buf , int len) {
        String strTwo = new String("                     "  + "                                             ");
 
@@ -112,13 +122,17 @@ public class Record {
       return buf;
    }
 
-   /** ************************************************************
-    *  write() Writes a record to the specified RandomAccessFile.
-    *          1- First it writes a int (recid) to the output file
-    *          2- Next it writes the quantity as an int.
-    *          3- Then it writes the remaing record as a string.
-    ************************************************************** */
-   public void write(RandomAccessFile file) throws IOException {
+    /**
+     * ***********************************************************
+     * write() Writes a record to the specified RandomAccessFile.
+     * 1- First it writes a int (recid) to the output file
+     * 2- Next it writes the quantity as an int.
+     * 3- Then it writes the remaing record as a string.
+     *
+     * @param file the file
+     * @throws IOException the io exception
+     */
+    public void write(RandomAccessFile file) throws IOException {
       StringBuffer buf  = new StringBuffer(" ");
       String str = "" , str2 = "";
 
@@ -142,52 +156,148 @@ public class Record {
    }
 
 
-   /** ********************************************************
-    * Method: writeInteger() is used to write an integer to the
-    *         randomaccess file.
-    ********************************************************/
-   public void writeInteger(RandomAccessFile file , int a) throws IOException {
+    /**
+     * *******************************************************
+     * Method: writeInteger() is used to write an integer to the
+     * randomaccess file.
+     *
+     * @param file the file
+     * @param a    the a
+     * @throws IOException the io exception
+     */
+    public void writeInteger(RandomAccessFile file , int a) throws IOException {
       file.writeInt(a);
    }
 
-   public int getRecID() { return recID; }
+    /**
+     * Gets rec id.
+     *
+     * @return the rec id
+     */
+    public int getRecID() { return recID; }
 
-   public String getToolType() { return toolType.trim(); }
+    /**
+     * Gets tool type.
+     *
+     * @return the tool type
+     */
+    public String getToolType() { return toolType.trim(); }
 
-   public String getToolDesc() { return toolDesc.trim(); }
+    /**
+     * Gets tool desc.
+     *
+     * @return the tool desc
+     */
+    public String getToolDesc() { return toolDesc.trim(); }
 
-   public String getPartNumber() { return partNum.trim(); }
+    /**
+     * Gets part number.
+     *
+     * @return the part number
+     */
+    public String getPartNumber() { return partNum.trim(); }
 
-   public int getQuantity() { return quantity; }
+    /**
+     * Gets quantity.
+     *
+     * @return the quantity
+     */
+    public int getQuantity() { return quantity; }
 
-   public String getBrandName() { return brandName.trim(); }
+    /**
+     * Gets brand name.
+     *
+     * @return the brand name
+     */
+    public String getBrandName() { return brandName.trim(); }
 
-   public String getCost() { return cost.trim(); }
+    /**
+     * Gets cost.
+     *
+     * @return the cost
+     */
+    public String getCost() { return cost.trim(); }
 
-   public void setToolType(String f) { toolType = f; }
+    /**
+     * Sets tool type.
+     *
+     * @param f the f
+     */
+    public void setToolType(String f) { toolType = f; }
 
-   public void setRecID(int p) { recID = p; }
+    /**
+     * Sets rec id.
+     *
+     * @param p the p
+     */
+    public void setRecID(int p) { recID = p; }
 
-   public void setCost(String f) { cost = f; }
+    /**
+     * Sets cost.
+     *
+     * @param f the f
+     */
+    public void setCost(String f) { cost = f; }
 
-   public void setBrandName(String f) { brandName = f; }
+    /**
+     * Sets brand name.
+     *
+     * @param f the f
+     */
+    public void setBrandName(String f) { brandName = f; }
 
-   public void setToolDesc(String f) { toolDesc = f; }
+    /**
+     * Sets tool desc.
+     *
+     * @param f the f
+     */
+    public void setToolDesc(String f) { toolDesc = f; }
 
-   public void setPartNumber(String f) { partNum = f; }
+    /**
+     * Sets part number.
+     *
+     * @param f the f
+     */
+    public void setPartNumber(String f) { partNum = f; }
 
-   public void setQuantity(int q) { quantity = q; }
+    /**
+     * Sets quantity.
+     *
+     * @param q the q
+     */
+    public void setQuantity(int q) { quantity = q; }
 
-   public void setFilePos(long fp) { filePos = fp; }
+    /**
+     * Sets file pos.
+     *
+     * @param fp the fp
+     */
+    public void setFilePos(long fp) { filePos = fp; }
 
-   public void setFileLen(long fl) { fileLen = fl; }
+    /**
+     * Sets file len.
+     *
+     * @param fl the fl
+     */
+    public void setFileLen(long fl) { fileLen = fl; }
 
-   public void sysPrint(String str ) {
+    /**
+     * Sys print.
+     *
+     * @param str the str
+     */
+    public void sysPrint(String str ) {
       if (myDebug) {
          System.out.println(str);
       }
    }
-   public static int getSize() {
+
+    /**
+     * Gets size.
+     *
+     * @return the size
+     */
+    public static int getSize() {
       return 582;
    }
 }
