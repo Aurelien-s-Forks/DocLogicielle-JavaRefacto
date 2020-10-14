@@ -137,7 +137,6 @@ public class Record {
       String str = "" , str2 = "";
 
       file.writeInt(recID);
-
       file.writeInt(quantity);
 
       str = str + toolType + ";;";
