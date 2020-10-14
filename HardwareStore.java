@@ -701,9 +701,6 @@ public class HardwareStore extends JFrame implements ActionListener {
          cleanup();
    }
 
-   /**
-    * Cleanup.
-    */
    public void cleanup() {
       try {
          file.close();
@@ -715,17 +712,11 @@ public class HardwareStore extends JFrame implements ActionListener {
       System.exit(0);
    }
 
-   /**
-    * Display delete dialog.
-    */
    public void displayDeleteDialog() {
       sysPrint("The Delete Record Dialog was made visible.\n");
       deleteRec.setVisible(true);
    }
 
-   /**
-    * Display update dialog.
-    */
    public void displayUpdateDialog() {
       sysPrint("The Update Record Dialog was made visible.\n");
       JOptionPane.showMessageDialog(null,
@@ -735,9 +726,6 @@ public class HardwareStore extends JFrame implements ActionListener {
       update.setVisible(true);
    }
 
-   /**
-    * Display add dialog.
-    */
    public void displayAddDialog() {
       sysPrint("The New/Add Record Dialog was made visible.\n");
       NewRec newRec = new NewRec(hws, file, table, pData);
@@ -859,9 +847,6 @@ public class HardwareStore extends JFrame implements ActionListener {
       new HardwareStore().hws = new HardwareStore();
    }
 
-   /**
-    * The type Menu handler.
-    */
    public class MenuHandler implements ActionListener {
       public void actionPerformed(ActionEvent e) {
 
@@ -912,11 +897,8 @@ public class HardwareStore extends JFrame implements ActionListener {
             // ListRecs BPTRecs = new ListRecs( hws , "WDV", "Wet-Dry Vacs" );
          } else if (e.getSource() == sccMI) {
             sysPrint("The Storage, Chests & Cabinets menu Item was selected.\n");
-            //ListRecs BPTRecs = new ListRecs( hws , "SCC", "Storage, Chests & Cabinets" );
          } else if (e.getSource() == deleteMI) {
             sysPrint("The Delete Record Dialog was made visible.\n");
-            //DeleteRec( HardwareStore hw_store,  RandomAccessFile f,
-            // JTable tab, String p_Data[] []  )
             deleteRec = new DeleteRec(hws, file, pData);
             deleteRec.setVisible(true);
          } else if (e.getSource() == addMI) {
@@ -975,13 +957,8 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
    }
 
-   /**
-    * The type Window handler.
-    */
    public static class WindowHandler extends WindowAdapter {
-      /**
-       * The H.
-       */
+
       HardwareStore h;
 
       /**
@@ -998,9 +975,6 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
    }
 
-   /**
-    * The type Pass word.
-    */
    public static class PassWord extends Dialog
            implements ActionListener {
 
@@ -1119,21 +1093,12 @@ public class HardwareStore extends JFrame implements ActionListener {
 
    }
 
-   /**
-    * The type Mouse clicked handler.
-    */
    public class MouseClickedHandler extends MouseAdapter {
-      /**
-       * The Table.
-       */
+      
       JTable table;
-      /**
-       * The P data.
-       */
+      
       String[][] pData;
-      /**
-       * The F.
-       */
+      
       RandomAccessFile f;
 
       /**
@@ -1165,9 +1130,6 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
    }
 
-   /**
-    * The type Update rec.
-    */
    public class UpdateRec extends Dialog implements ActionListener {
       private RandomAccessFile file;
       private JTextField recID, toolType, brandName, toolDesc,
@@ -1197,9 +1159,6 @@ public class HardwareStore extends JFrame implements ActionListener {
          upDSetup();
       }
 
-      /**
-       * Sets fields.
-       */
       void setFields() {
          price = new JTextField(10);
 
@@ -1239,9 +1198,6 @@ public class HardwareStore extends JFrame implements ActionListener {
          data = new Record();
       }
 
-      /**
-       * Up d setup.
-       */
       public void upDSetup() {
 
          recID = new JTextField(10);
@@ -1386,9 +1342,6 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
    }
 
-   /**
-    * The type New rec.
-    */
    public static class NewRec extends Dialog implements ActionListener {
 
       private RandomAccessFile file;
@@ -1424,9 +1377,6 @@ public class HardwareStore extends JFrame implements ActionListener {
          newSetup();
       }
 
-      /**
-       * Sets fields.
-       */
       void setFields() {
          price = new JTextField(10);
 
@@ -1464,9 +1414,6 @@ public class HardwareStore extends JFrame implements ActionListener {
          data = new Record();
       }
 
-      /**
-       * New setup.
-       */
       public void newSetup() {
          setSize(400, 250);
          setLayout(new GridLayout(9, 2));
@@ -1550,9 +1497,6 @@ public class HardwareStore extends JFrame implements ActionListener {
          }
       }
 
-      /**
-       * Sets record size.
-       */
       public void setRecordSize() {
          try {
             file = new RandomAccessFile(hwStore.aFile, "rw");
@@ -1573,9 +1517,6 @@ public class HardwareStore extends JFrame implements ActionListener {
       }
    }
 
-   /**
-    * The type Delete rec.
-    */
    public class DeleteRec extends Dialog
            implements ActionListener {
       private RandomAccessFile file;
@@ -1623,9 +1564,6 @@ public class HardwareStore extends JFrame implements ActionListener {
          add(cancel);
       }
 
-      /**
-       * Del setup.
-       */
       public void delSetup() {
          JLabel recIDLabel = new JLabel("Record ID");
          recID = new JTextField(10);
@@ -1643,7 +1581,6 @@ public class HardwareStore extends JFrame implements ActionListener {
 
             if (theRecID < 0 || theRecID > 250) {
                recID.setText("Invalid part number");
-               //return;
             } else {
 
                try {
