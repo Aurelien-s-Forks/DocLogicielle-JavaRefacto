@@ -1,3 +1,5 @@
+import main.java.com.helpers.SystemHelpers;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -623,9 +625,7 @@ public class HardwareStore extends JFrame implements ActionListener {
     }
 
     public void sysPrint(String str) {
-        if (myDebug) {
-            System.out.println(str);
-        }
+        SystemHelpers.sysPrint(myDebug, str);
     }
 
     /**
