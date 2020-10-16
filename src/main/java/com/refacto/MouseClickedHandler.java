@@ -20,12 +20,12 @@ public class MouseClickedHandler extends MouseAdapter {
 
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == table) {
-            int ii = table.getSelectedRow();
+            int RowSelected = table.getSelectedRow();
             JOptionPane.showMessageDialog(null,
                     "Enter the record ID to be updated and press enter.",
                     "Update Record", JOptionPane.INFORMATION_MESSAGE);
             UpdateRec update = new UpdateRec(hardwareStore, hardwareStore.hws, f, pData);
-            if (ii < 250) {
+            if (RowSelected < 250) {
                 update.setVisible(true);
                 table.repaint();
             }
