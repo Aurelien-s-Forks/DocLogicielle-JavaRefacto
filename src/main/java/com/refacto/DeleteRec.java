@@ -5,8 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-public class DeleteRec extends Dialog
-        implements ActionListener {
+public class DeleteRec extends Dialog implements ActionListener {
     private final HardwareStore hardwareStore;
     private RandomAccessFile file;
     private JTextField recID;

@@ -5,11 +5,17 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import java.util.ArrayList;
 import java.util.Arrays;
 
 >>>>>>> 565eee926a5ea6335708958569ef1cee68e0e160
+=======
+import java.util.ArrayList;
+import java.util.Arrays;
+
+>>>>>>> 77e8a1a7fc95ca8e02d9505dd0063382d079ac11
 import main.java.com.helpers.*;
 
 public class UpdateRec extends Dialog implements ActionListener {
@@ -46,6 +52,7 @@ public class UpdateRec extends Dialog implements ActionListener {
         price = new JTextField(10);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         RecHelpers.addLabel("Record ID");
         RecHelpers.addLabel("Type of Tool");
         RecHelpers.addLabel("Brand Name");
@@ -70,6 +77,8 @@ public class UpdateRec extends Dialog implements ActionListener {
         add(save);
         add(cancel);
 =======
+=======
+>>>>>>> 77e8a1a7fc95ca8e02d9505dd0063382d079ac11
         new RecHelpers().addAllLabels();
 
         save = new JButton();
@@ -81,7 +90,10 @@ public class UpdateRec extends Dialog implements ActionListener {
         ArrayList<JTextField> allTextField = new ArrayList<JTextField>(Arrays.asList(recID, toolType, brandName, toolDesc, partNum, quantity, price));
 
         RecHelpers.addAllTextField(allTextField);
+<<<<<<< HEAD
 >>>>>>> 565eee926a5ea6335708958569ef1cee68e0e160
+=======
+>>>>>>> 77e8a1a7fc95ca8e02d9505dd0063382d079ac11
 
         data = new Record();
     }

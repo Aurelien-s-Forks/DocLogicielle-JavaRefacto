@@ -3,8 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PassWord extends Dialog
-        implements ActionListener {
+public class PassWord extends Dialog implements ActionListener {
 
     private final JButton buttonEnter;
     private final JButton buttonCancel;

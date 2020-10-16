@@ -1,3 +1,5 @@
+import main.java.com.helpers.SystemHelpers;
+
 import java.io.*;
 import java.util.*;
 
@@ -43,14 +45,14 @@ public class Record {
       int ii = 0 , loopCtl = 585 , len = 0;
       long rem = fileLen - filePos;
 
-      sysPrint("ReadRec() 1a: Remaining bytes is " + rem);
-      sysPrint("ReadRec() 1b: Reading ints");
+      SystemHelpers.sysPrint(myDebug,"ReadRec() 1a: Remaining bytes is " + rem);
+      SystemHelpers.sysPrint(myDebug,"ReadRec() 1b: Reading ints");
 
       recID    = file.readInt();
-      sysPrint("ReadRec() 1c: recID  is " +  recID);
+      SystemHelpers.sysPrint(myDebug,"ReadRec() 1c: recID  is " +  recID);
 
       quantity = file.readInt();
-      sysPrint("ReadRec() 2: Reading string");
+      SystemHelpers.sysPrint(myDebug,"ReadRec() 2: Reading string");
 
       /** Read characters until we get to;;; which
        *  indicates the end of the record */
@@ -67,8 +69,8 @@ public class Record {
          ii++;
       }
 
-      sysPrint("ReadRec() 3a: str is " + str);
-      sysPrint("ReadRec() 3b: Reading string. ii =s " + ii);
+      SystemHelpers.sysPrint(myDebug,"ReadRec() 3a: str is " + str);
+      SystemHelpers.sysPrint(myDebug,"ReadRec() 3b: Reading string. ii =s " + ii);
       sysPrint( "ReadRec() 4: The value of str is " + str);
       tokens = new StringTokenizer(str , ";;");
 
