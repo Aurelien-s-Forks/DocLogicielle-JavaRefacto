@@ -75,8 +75,9 @@ public class MenuHandler implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == hardwareStore.geteMI()) hardwareStore.cleanup();
+        if (e.getSource() == hardwareStore.geteMI()) {
+            hardwareStore.cleanup();
+        }
         eventItem(e, hardwareStore.getLmMI(), "The Lawn Mower menu Item was selected.\n", "Lawn Mowers");
         eventItem(e, hardwareStore.getLmtMI(), "The Lawn Mower Tractor menu Item was selected.\n", "Lawn Tractor Mowers");
         eventItem(e, hardwareStore.getHdMI(), "The Hand Drill Tools menu Item was selected.\n", "Hand Drill Tools");
@@ -97,6 +98,5 @@ public class MenuHandler implements ActionListener {
         eventOptions(e, hardwareStore.getAddMI(), "The Add menu Item was selected.\n", "add");
         eventHelpAbout(e, hardwareStore.getHelpHWMI(), "The Help menu Item was selected.\n", "help");
         eventHelpAbout(e, hardwareStore.getAboutHWMI(), "The About menu Item was selected.\n", "about");
-
     }
 }
