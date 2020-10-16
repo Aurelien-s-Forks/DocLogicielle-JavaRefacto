@@ -6,7 +6,8 @@ import java.awt.event.ActionListener;
 public class PassWord extends Dialog
         implements ActionListener {
 
-    private final JButton enter;
+    private final JButton buttonEnter;
+    private final JButton buttonCancel;
     private final JTextField userID;
     private final JPasswordField password;
     private final HardwareStore hwStore;
@@ -16,8 +17,8 @@ public class PassWord extends Dialog
         super(new Frame(), "Password Check", true);
 
         hwStore = hw_Store;
-        enter = new JButton("Enter");
-        JButton cancel = new JButton("Cancel");
+        buttonEnter = new JButton("Enter");
+        buttonCancel = new JButton("Cancel");
 
         JPanel buttonPanel = new JPanel();
         JPanel mainPanel = new JPanel();
@@ -36,12 +37,12 @@ public class PassWord extends Dialog
         mainPanel.add(passwordLabel);
         mainPanel.add(password);
 
-        buttonPanel.add(enter);
-        buttonPanel.add(cancel);
+        buttonPanel.add(buttonEnter);
+        buttonPanel.add(buttonCancel);
         add(buttonPanel, BorderLayout.SOUTH);
 
-        enter.addActionListener(this);
-        cancel.addActionListener(this);
+        buttonEnter.addActionListener(this);
+        buttonCancel.addActionListener(this);
 
         setSize(400, 300);
     }
@@ -53,9 +54,16 @@ public class PassWord extends Dialog
         setVisible(true);
     }
 
+    public void closeDialog() {
+        whichDialog = "closed";
+        userID.setText("");
+        password.setText("");
+        clear();
+    }
+
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == enter) {
+        if (e.getSource() == buttonEnter) {
             String pwd = new String(password.getPassword());
             String uID = userID.getText();
 
@@ -63,30 +71,18 @@ public class PassWord extends Dialog
                 switch (whichDialog) {
                     case "delete":
                         hwStore.displayDeleteDialog();
-                        whichDialog = "closed";
-                        userID.setText("");
-                        password.setText("");
-                        clear();
+                        closeDialog();
                         break;
 
                     case "update":
                         hwStore.displayUpdateDialog();
-                        whichDialog = "closed";
-                        userID.setText("");
-                        password.setText("");
-                        clear();
+                        closeDialog();
                         break;
 
                     case "add":
                         hwStore.displayAddDialog();
-                        whichDialog = "closed";
-                        userID.setText("");
-                        password.setText("");
-                        clear();
+                        closeDialog();
                         break;
-
-                    default:
-                        // code block
                 }
             } else {
                 JOptionPane.showMessageDialog(null,
