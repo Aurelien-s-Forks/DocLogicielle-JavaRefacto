@@ -5,6 +5,11 @@ public class WindowHandler extends WindowAdapter {
 
    HardwareStore h;
 
+   /**
+    * Instantiates a new Window handler.
+    *
+    * @param s the s
+    */
    public WindowHandler(HardwareStore s) {
       h = s;
    }

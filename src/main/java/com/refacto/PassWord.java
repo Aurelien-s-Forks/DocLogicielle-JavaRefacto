@@ -35,6 +35,11 @@ public class PassWord extends Dialog implements ActionListener {
         return button;
     }
 
+    /**
+     * Instantiates a new Pass word.
+     *
+     * @param hw_Store the hw store
+     */
     public PassWord(HardwareStore hw_Store) {
         super(new Frame(), "Password Check", true);
         hwStore = hw_Store;
@@ -61,6 +66,11 @@ public class PassWord extends Dialog implements ActionListener {
         setSize(400, 300);
     }
 
+    /**
+     * Display dialog.
+     *
+     * @param which_Dialog the which dialog
+     */
     public void displayDialog(String which_Dialog) {
         whichDialog = which_Dialog;
         userID.setText("admin");
@@ -68,6 +78,9 @@ public class PassWord extends Dialog implements ActionListener {
         setVisible(true);
     }
 
+    /**
+     * Close dialog.
+     */
     public void closeDialog() {
         whichDialog = "closed";
         userID.setText("");

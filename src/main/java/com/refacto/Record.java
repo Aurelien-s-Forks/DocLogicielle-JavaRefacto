@@ -62,9 +62,10 @@ public class Record {
          len = str.length();
 
          if(ii > 4) {
-            str2 = str.substring(len-4 , len-1);
-            if(str2.equals(";;;"))
+            str2 = str.substring(len - 4 , len - 1);
+            if(str2.equals(";;;")) {
                 break;
+            }
          }
          ii++;
       }
@@ -81,7 +82,7 @@ public class Record {
          ii = 2;
 
          /** Load the tokens into a string array. */
-         while(ii < 7 ) {
+         while(ii < 7) {
             recordTokens[ii] = tokens.nextToken();
             ii++;
          }
@@ -106,7 +107,7 @@ public class Record {
      * @param len the len
      * @return the string buffer
      */
-    public StringBuffer fill (String str, StringBuffer buf , int len) {
+    public StringBuffer fill(String str, StringBuffer buf , int len) {
        String strTwo = "                     " + "                                             ";
 
        if(str != null) {
