@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import main.java.com.helpers.*;
 
 public class UpdateRec extends Dialog implements ActionListener {
     private final HardwareStore hardwareStore;
@@ -29,46 +30,43 @@ public class UpdateRec extends Dialog implements ActionListener {
         upDSetup();
     }
 
+    private JLabel addLabel(String label) {
+        JLabel newLabel = new JLabel(label);
+        add(newLabel);
+        return newLabel;
+    }
+
     void setFields() {
         price = new JTextField(10);
 
-        JLabel recIDLabel = new JLabel("Record ID");
-        JLabel toolTypeLabel = new JLabel("Type of Tool");
-        JLabel brandNameLabel = new JLabel("Brand Name");
-        JLabel toolDescLabel = new JLabel("Tool Description");
-        JLabel partNumLabel = new JLabel("Part Number");
-        JLabel quantityLabel = new JLabel("Quantity");
-        JLabel priceLabel = new JLabel("Price");
+        RecHelpers.addLabel("Record ID");
+        RecHelpers.addLabel("Type of Tool");
+        RecHelpers.addLabel("Brand Name");
+        RecHelpers.addLabel("Tool Description");
+        RecHelpers.addLabel("Part Number");
+        RecHelpers.addLabel("Quantity");
+        RecHelpers.addLabel("Price");
 
         save = new JButton("Save Changes");
         cancel = new JButton("Cancel");
-
-        cancel.addActionListener(this);
         recID.addActionListener(this);
         save.addActionListener(this);
+        cancel.addActionListener(this);
 
-        add(recIDLabel);
         add(recID);
-        add(cancel);
-        add(toolTypeLabel);
         add(toolType);
-        add(brandNameLabel);
         add(brandName);
-        add(toolDescLabel);
         add(toolDesc);
-        add(partNumLabel);
         add(partNum);
-        add(quantityLabel);
         add(quantity);
-        add(priceLabel);
         add(price);
         add(save);
+        add(cancel);
 
         data = new Record();
     }
 
     public void upDSetup() {
-
         recID = new JTextField(10);
         toolType = new JTextField(10);
         brandName = new JTextField(10);
