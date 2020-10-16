@@ -13,32 +13,47 @@ public class PassWord extends Dialog
     private final HardwareStore hwStore;
     private String whichDialog;
 
+    private JTextField addTextField(JPanel panel, int col) {
+        JTextField textField = new JTextField(col);
+        panel.add(textField);
+        return textField;
+    }
+
+    private JPasswordField addPasswordField(JPanel panel, int col) {
+        JPasswordField passwordField = new JPasswordField(col);
+        panel.add(passwordField);
+        return passwordField;
+    }
+
+    private void addLabel(JPanel panel, String l) {
+        JLabel label = new JLabel(l);
+        panel.add(label);
+    }
+
+    private JButton addButton(JPanel panel, String label) {
+        JButton button = new JButton(label);
+        panel.add(button);
+        return button;
+    }
+
     public PassWord(HardwareStore hw_Store) {
         super(new Frame(), "Password Check", true);
-
         hwStore = hw_Store;
-        buttonEnter = new JButton("Enter");
-        buttonCancel = new JButton("Cancel");
 
         JPanel buttonPanel = new JPanel();
         JPanel mainPanel = new JPanel();
 
         mainPanel.setLayout(new GridLayout(3, 2));
+        userID = addTextField(mainPanel, 10);
+        password = addPasswordField(mainPanel, 10);
+
         add(mainPanel, BorderLayout.CENTER);
 
-        userID = new JTextField(10);
-        password = new JPasswordField(10);
+        addLabel(mainPanel, "Enter your user ID");
+        addLabel(mainPanel, "Enter your user password");
 
-        JLabel userIDLabel = new JLabel("Enter your user ID");
-        JLabel passwordLabel = new JLabel("Enter your user password");
-
-        mainPanel.add(userIDLabel);
-        mainPanel.add(userID);
-        mainPanel.add(passwordLabel);
-        mainPanel.add(password);
-
-        buttonPanel.add(buttonEnter);
-        buttonPanel.add(buttonCancel);
+        buttonEnter = addButton(buttonPanel, "Enter");
+        buttonCancel = addButton(buttonPanel, "Cancel");
         add(buttonPanel, BorderLayout.SOUTH);
 
         buttonEnter.addActionListener(this);
@@ -69,20 +84,18 @@ public class PassWord extends Dialog
 
             if ((uID.equals("admin")) && (pwd.equals("hwstore"))) {
                 switch (whichDialog) {
-                    case "delete":
+                    case "delete" -> {
                         hwStore.displayDeleteDialog();
                         closeDialog();
-                        break;
-
-                    case "update":
+                    }
+                    case "update" -> {
                         hwStore.displayUpdateDialog();
                         closeDialog();
-                        break;
-
-                    case "add":
+                    }
+                    case "add" -> {
                         hwStore.displayAddDialog();
                         closeDialog();
-                        break;
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(null,
