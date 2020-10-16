@@ -1,3 +1,5 @@
+import main.java.com.helpers.RecHelpers;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,21 +9,19 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import main.java.com.helpers.*;
-
 public class NewRec extends Dialog implements ActionListener {
-
+    private final HardwareStore hardwareStore;
+    private final String[][] pData;
+    private final String[] columnNames = {"Record ID", "Type of tool",
+            "Brand Name", "Tool Description", "partNum",
+            "Quantity", "Price"};
+    private final HardwareStore hwStore;
     private RandomAccessFile file;
     private JTextField recID, toolType, brandName, toolDesc,
             partNum, quantity, price;
     private JButton cancel, save;
     private Record data;
     private JTable table;
-    private final String[][] pData;
-    private final String[] columnNames = {"Record ID", "Type of tool",
-            "Brand Name", "Tool Description", "partNum",
-            "Quantity", "Price"};
-    private final HardwareStore hwStore;
 
     /**
      * Instantiates a new New rec.
@@ -35,10 +35,11 @@ public class NewRec extends Dialog implements ActionListener {
             f, JTable tab, String[][] p_Data) {
 
         super(new Frame(), "New Record", true);
+        this.hardwareStore = hw_store;
         file = f;
         table = tab;
         pData = p_Data;
-        hwStore = hw_store;
+        hwStore = this.hardwareStore;
 
         newSetup();
     }

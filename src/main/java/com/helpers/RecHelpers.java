@@ -15,10 +15,6 @@ public class RecHelpers extends Container {
         new Container().add(newLabel);
     }
 
-    public void addAllLabels() {
-        for (String allLabel : allLabels) RecHelpers.addLabel(allLabel);
-    }
-
     public static void createButtonsActionListener(JButton save, JButton cancel, ActionListener newRec) {
         save.setName("Save Changes");
         cancel.setName("Cancel");
@@ -28,6 +24,10 @@ public class RecHelpers extends Container {
 
     public static void addAllTextField(ArrayList<JTextField> jTextFieldsList) {
         for (JTextField jTextField : jTextFieldsList) new Container().add(jTextField);
+    }
+
+    public void addAllLabels() {
+        for (String allLabel : allLabels) RecHelpers.addLabel(allLabel);
     }
 
     public ArrayList<String> getAllLabels() {

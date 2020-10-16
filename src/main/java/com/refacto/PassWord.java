@@ -12,29 +12,6 @@ public class PassWord extends Dialog implements ActionListener {
     private final HardwareStore hwStore;
     private String whichDialog;
 
-    private JTextField addTextField(JPanel panel, int col) {
-        JTextField textField = new JTextField(col);
-        panel.add(textField);
-        return textField;
-    }
-
-    private JPasswordField addPasswordField(JPanel panel, int col) {
-        JPasswordField passwordField = new JPasswordField(col);
-        panel.add(passwordField);
-        return passwordField;
-    }
-
-    private void addLabel(JPanel panel, String l) {
-        JLabel label = new JLabel(l);
-        panel.add(label);
-    }
-
-    private JButton addButton(JPanel panel, String label) {
-        JButton button = new JButton(label);
-        panel.add(button);
-        return button;
-    }
-
     /**
      * Instantiates a new Pass word.
      *
@@ -64,6 +41,29 @@ public class PassWord extends Dialog implements ActionListener {
         buttonCancel.addActionListener(this);
 
         setSize(400, 300);
+    }
+
+    private JTextField addTextField(JPanel panel, int col) {
+        JTextField textField = new JTextField(col);
+        panel.add(textField);
+        return textField;
+    }
+
+    private JPasswordField addPasswordField(JPanel panel, int col) {
+        JPasswordField passwordField = new JPasswordField(col);
+        panel.add(passwordField);
+        return passwordField;
+    }
+
+    private void addLabel(JPanel panel, String l) {
+        JLabel label = new JLabel(l);
+        panel.add(label);
+    }
+
+    private JButton addButton(JPanel panel, String label) {
+        JButton button = new JButton(label);
+        panel.add(button);
+        return button;
     }
 
     /**

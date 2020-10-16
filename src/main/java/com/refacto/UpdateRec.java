@@ -1,3 +1,5 @@
+import main.java.com.helpers.RecHelpers;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,18 +9,16 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import main.java.com.helpers.*;
-
 public class UpdateRec extends Dialog implements ActionListener {
     private final HardwareStore hardwareStore;
+    private final String[][] pData;
+    private final HardwareStore hwstore;
     private RandomAccessFile file;
     private JTextField recID, toolType, brandName, toolDesc,
             partNum, quantity, price;
     private JButton cancel, save;
     private Record data;
     private int theRecID;
-    private final String[][] pData;
-    private final HardwareStore hwstore;
 
     public UpdateRec(HardwareStore hardwareStore, HardwareStore hw_store, RandomAccessFile f,
                      String[][] p_Data) {
@@ -28,7 +28,7 @@ public class UpdateRec extends Dialog implements ActionListener {
         setLayout(new GridLayout(9, 2));
         file = f;
         pData = p_Data;
-        hwstore = hw_store;
+        hwstore = this.hardwareStore;
 
         upDSetup();
     }

@@ -7,15 +7,15 @@ import java.io.RandomAccessFile;
 
 public class DeleteRec extends Dialog implements ActionListener {
     private final HardwareStore hardwareStore;
+    private final String[][] pData;
+    private final HardwareStore hwStore;
     private RandomAccessFile file;
     private JTextField recID;
     private JButton cancel, delete;
     private Record data;
     private int theRecID = -1;
-    private final String[][] pData;
-    private final HardwareStore hwStore;
 
-    public DeleteRec(HardwareStore hardwareStore, HardwareStore hw_store, RandomAccessFile f,
+    public DeleteRec(HardwareStore hardwareStore, RandomAccessFile f,
                      String[][] p_Data) {
 
         super(new Frame(), "Delete Record", true);
@@ -24,7 +24,7 @@ public class DeleteRec extends Dialog implements ActionListener {
         setLayout(new GridLayout(2, 2));
         file = f;
         pData = p_Data;
-        hwStore = hw_store;
+        hwStore = this.hardwareStore;
         delSetup();
     }
 
@@ -54,7 +54,6 @@ public class DeleteRec extends Dialog implements ActionListener {
 
         data = new Record();
     }
-
 
     public void actionPerformed(ActionEvent e) {
         System.out.println("DeleteRec(): 1a - In the actionPerformed() method. ");
