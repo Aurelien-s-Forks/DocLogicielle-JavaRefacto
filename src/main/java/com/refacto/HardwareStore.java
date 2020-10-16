@@ -338,113 +338,59 @@ public class HardwareStore extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    public JMenuItem setupItem(JMenu viewmenu, String label) {
+        JMenuItem item = new JMenuItem(label);
+        viewmenu.add(item);
+        item.addActionListener(menuHandler);
+        return item;
+    }
+
     public void setupMenu() {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-
         JMenu fileMenu = new JMenu("File");
 
         menuBar.add(fileMenu);
-        eMI = new JMenuItem("Exit");
-        fileMenu.add(eMI);
-        eMI.addActionListener(menuHandler);
+        eMI = setupItem(fileMenu, "Exit");
 
         JMenu viewMenu = new JMenu("View");
-
-        lmMI = new JMenuItem("Lawn Mowers");
-        viewMenu.add(lmMI);
-        lmMI.addActionListener(menuHandler);
-
-        lmtMI = new JMenuItem("Lawn Mowing Tractors");
-        viewMenu.add(lmtMI);
-        lmtMI.addActionListener(menuHandler);
-
-        hdMI = new JMenuItem("Hand Drills Tools");
-        viewMenu.add(hdMI);
-        hdMI.addActionListener(menuHandler);
-
-        dpMI = new JMenuItem("Drill Press Power Tools");
-        viewMenu.add(dpMI);
-        dpMI.addActionListener(menuHandler);
-
-        csMI = new JMenuItem("Circular Saws");
-        viewMenu.add(csMI);
-        csMI.addActionListener(menuHandler);
-
-        hamMI = new JMenuItem("Hammers");
-        viewMenu.add(hamMI);
-        hamMI.addActionListener(menuHandler);
-
-        tabMI = new JMenuItem("Table Saws");
-        viewMenu.add(tabMI);
-        tabMI.addActionListener(menuHandler);
-
-        bandMI = new JMenuItem("Band Saws");
-        viewMenu.add(bandMI);
-        bandMI.addActionListener(menuHandler);
-
-        sandMI = new JMenuItem("Sanders");
-        viewMenu.add(sandMI);
-        sandMI.addActionListener(menuHandler);
-
-        stapMI = new JMenuItem("Staplers");
-        viewMenu.add(stapMI);
-        stapMI.addActionListener(menuHandler);
-
-        wdvMI = new JMenuItem("Wet-Dry Vacs");
-        viewMenu.add(wdvMI);
-        wdvMI.addActionListener(menuHandler);
-
-        sccMI = new JMenuItem("Storage, Chests & Cabinets");
-        viewMenu.add(sccMI);
-        sccMI.addActionListener(menuHandler);
+        lmMI = setupItem(viewMenu, "Lawn Mowers");
+        lmtMI = setupItem(viewMenu, "Lawn Mowing Tractors");
+        hdMI = setupItem(viewMenu, "Hand Drills Tools");
+        dpMI = setupItem(viewMenu, "Drill Press Power Tools");
+        csMI = setupItem(viewMenu, "Circular Saws");
+        hamMI = setupItem(viewMenu, "Hammers");
+        tabMI = setupItem(viewMenu, "Table Saws");
+        bandMI = setupItem(viewMenu, "Band Saws");
+        sandMI = setupItem(viewMenu, "Sanders");
+        stapMI = setupItem(viewMenu, "Staplers");
+        wdvMI = setupItem(viewMenu, "Wet-Dry Vacs");
+        sccMI = setupItem(viewMenu, "Storage, Chests & Cabinets");
 
         menuBar.add(viewMenu);
         JMenu optionsMenu = new JMenu("Options");
 
-        listAllMI = new JMenuItem("List All");
-        optionsMenu.add(listAllMI);
-        listAllMI.addActionListener(menuHandler);
+        listAllMI = setupItem(optionsMenu, "List All");
         optionsMenu.addSeparator();
 
-        addMI = new JMenuItem("Add");
-        optionsMenu.add(addMI);
-        addMI.addActionListener(menuHandler);
-
-        updateMI = new JMenuItem("Update");
-        optionsMenu.add(updateMI);
-        updateMI.addActionListener(menuHandler);
+        addMI = setupItem(optionsMenu, "Add");
+        updateMI = setupItem(optionsMenu, "Update");
         optionsMenu.addSeparator();
 
-        deleteMI = new JMenuItem("Delete");
-        optionsMenu.add(deleteMI);
-        deleteMI.addActionListener(menuHandler);
-
+        deleteMI = setupItem(optionsMenu, "Delete");
         menuBar.add(optionsMenu);
 
         JMenu toolsMenu = new JMenu("Tools");
         menuBar.add(toolsMenu);
-        debugON = new JMenuItem("Debug On");
-        debugOFF = new JMenuItem("Debug Off");
-        toolsMenu.add(debugON);
-        toolsMenu.add(debugOFF);
-        debugON.addActionListener(menuHandler);
-        debugOFF.addActionListener(menuHandler);
+        debugON = setupItem(toolsMenu, "Debug On");
+        debugOFF = setupItem(toolsMenu, "Debug Off");
 
         JMenu helpMenu = new JMenu("Help");
-
-        helpHWMI = new JMenuItem("Help on HW Store");
-        helpMenu.add(helpHWMI);
-        helpHWMI.addActionListener(menuHandler);
-
+        helpHWMI = setupItem(helpMenu, "Help on HW Store");
         menuBar.add(helpMenu);
 
         JMenu aboutMenu = new JMenu("About");
-
-        aboutHWMI = new JMenuItem("About HW Store");
-        aboutMenu.add(aboutHWMI);
-        aboutHWMI.addActionListener(menuHandler);
-
+        aboutHWMI = setupItem(aboutMenu, "About HW Store");
         menuBar.add(aboutMenu);
     }
 
