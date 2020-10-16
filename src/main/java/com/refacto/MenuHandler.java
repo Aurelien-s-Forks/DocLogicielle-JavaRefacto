@@ -1,107 +1,102 @@
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
 public class MenuHandler implements ActionListener {
-   private final HardwareStore hardwareStore;
+    private final HardwareStore hardwareStore;
 
-   public MenuHandler(HardwareStore hardwareStore) {
-      this.hardwareStore = hardwareStore;
-   }
+    public MenuHandler(HardwareStore hardwareStore) {
+        this.hardwareStore = hardwareStore;
+    }
 
-   public void actionPerformed(ActionEvent e) {
+    private void eventItem(ActionEvent e, JMenuItem item, String print, String display) {
+        if (e.getSource() == item) {
+            hardwareStore.sysPrint(print);
+            hardwareStore.display(display);
+        }
+    }
 
-      if (e.getSource() == hardwareStore.geteMI()) {
-         hardwareStore.cleanup();
-      } else if (e.getSource() == hardwareStore.getLmMI()) {
-         hardwareStore.sysPrint("The Lawn Mower menu Item was selected.\n");
-         hardwareStore.display("Lawn Mowers");
-      } else if (e.getSource() == hardwareStore.getLmtMI()) {
-         hardwareStore.sysPrint("The Lawn Mower Tractor menu Item was selected.\n");
-         hardwareStore.display("Lawn Tractor Mowers");
-      } else if (e.getSource() == hardwareStore.getHdMI()) {
-         hardwareStore.sysPrint("The Hand Drill Tools menu Item was selected.\n");
-         hardwareStore.display("Hand Drill Tools");
-      } else if (e.getSource() == hardwareStore.getDpMI()) {
-         hardwareStore.sysPrint("The Drill Press Power Tools menu Item was selected.\n");
-         hardwareStore.display("Drill Press Power Tools");
-      } else if (e.getSource() == hardwareStore.getCsMI()) {
-         hardwareStore.sysPrint("The Circular Saws Tools menu Item was selected.\n");
-         hardwareStore.display("Circular Saws");
-      } else if (e.getSource() == hardwareStore.getHamMI()) {
-         hardwareStore.sysPrint("The Hammer menu Item was selected.\n");
-         hardwareStore.display("Hammers");
-      } else if (e.getSource() == hardwareStore.getTabMI()) {
-         hardwareStore.sysPrint("The Table Saws menu Item was selected.\n");
-         hardwareStore.display("Table Saws");
-      } else if (e.getSource() == hardwareStore.getBandMI()) {
-         hardwareStore.sysPrint("The Band Saws menu Item was selected.\n");
-         hardwareStore.display("Band Saws");
-      } else if (e.getSource() == hardwareStore.getSandMI()) {
-         hardwareStore.sysPrint("The Sanders menu Item was selected.\n");
-         hardwareStore.display("Sanders");
-      } else if (e.getSource() == hardwareStore.getStapMI()) {
-         hardwareStore.sysPrint("The Staplers menu Item was selected.\n");
-         hardwareStore.display("Staplers");
-      } else if (e.getSource() == hardwareStore.getWdvMI()) {
-         hardwareStore.sysPrint("The Wet-Dry Vacs menu Item was selected.\n");
-      } else if (e.getSource() == hardwareStore.getSccMI()) {
-         hardwareStore.sysPrint("The Storage, Chests & Cabinets menu Item was selected.\n");
-      } else if (e.getSource() == hardwareStore.getDeleteMI()) {
-         hardwareStore.sysPrint("The Delete Record Dialog was made visible.\n");
-         hardwareStore.setDeleteRec(hardwareStore, hardwareStore.hws, hardwareStore.getFile(), hardwareStore.getpData());
-         hardwareStore.getDeleteRec().setVisible(true);
-      } else if (e.getSource() == hardwareStore.getAddMI()) {
-         hardwareStore.sysPrint("The Add menu Item was selected.\n");
-         hardwareStore.getpWord().displayDialog("add");
-      } else if (e.getSource() == hardwareStore.getUpdateMI()) {
-         hardwareStore.sysPrint("The Update menu Item was selected.\n");
-         hardwareStore.setUpdate(hardwareStore, hardwareStore.hws, hardwareStore.getFile(), hardwareStore.getpData());
-         hardwareStore.getUpdate().setVisible(true);
-      } else if (e.getSource() == hardwareStore.getListAllMI()) {
-         hardwareStore.sysPrint("The List All menu Item was selected.\n");
-      } else if (e.getSource() == hardwareStore.getDebugON()) {
-         hardwareStore.setMyDebug(true);
-         hardwareStore.sysPrint("Debugging for this execution is turned on.\n");
-      } else if (e.getSource() == hardwareStore.getDebugOFF()) {
-         hardwareStore.sysPrint("Debugging for this execution is turned off.\n");
-         hardwareStore.setMyDebug(false);
-      } else if (e.getSource() == hardwareStore.getHelpHWMI()) {
-         hardwareStore.sysPrint("The Help menu Item was selected.\n");
-         File hd = new File("HW_Tutorial.html");
+    private void eventDebug(ActionEvent e, JMenuItem item, String print, boolean status) {
+        if (e.getSource() == item) {
+            hardwareStore.sysPrint(print);
+            hardwareStore.setMyDebug(status);
+        }
+    }
 
-         Runtime rt = Runtime.getRuntime();
-         String[] callAndArgs = {"c:\\Program Files\\Internet Explorer\\IEXPLORE.exe", "" + hd.getAbsolutePath()};
+    private void eventOptions(ActionEvent e, JMenuItem item, String print, String status) {
+        if (e.getSource() == item) {
+            hardwareStore.sysPrint(print);
+            switch (status) {
+                case "delete" -> {
+                    hardwareStore.setDeleteRec(hardwareStore, hardwareStore.hws, hardwareStore.getFile(), hardwareStore.getpData());
+                    hardwareStore.getDeleteRec().setVisible(true);
+                }
+                case "update" -> {
+                    hardwareStore.setUpdate(hardwareStore, hardwareStore.hws, hardwareStore.getFile(), hardwareStore.getpData());
+                    hardwareStore.getUpdate().setVisible(true);
+                }
+                case "add" -> hardwareStore.getpWord().displayDialog("add");
+            }
+        }
+    }
 
-         try {
-            Process child = rt.exec(callAndArgs);
-            child.waitFor();
-            hardwareStore.sysPrint("Process exit code is: " +
-                    child.exitValue());
-         } catch (IOException e2) {
-            hardwareStore.sysPrint(
-                    "IOException starting process!");
-         } catch (InterruptedException e3) {
-            System.err.println("Interrupted waiting for process!");
-         }
-      } else if (e.getSource() == hardwareStore.getAboutHWMI()) {
-         hardwareStore.sysPrint("The About menu Item was selected.\n");
-         Runtime rt = Runtime.getRuntime();
-         String[] callAndArgs = {"c:\\Program Files\\Internet Explorer\\IEXPLORE.exe",
-                 "http://www.sumtotalz.com/TotalAppsWorks/ProgrammingResource.html"};
-         try {
-            Process child = rt.exec(callAndArgs);
-            child.waitFor();
-            hardwareStore.sysPrint("Process exit code is: " +
-                    child.exitValue());
-         } catch (IOException e2) {
-            System.err.println(
-                    "IOException starting process!");
-         } catch (InterruptedException e3) {
-            System.err.println(
-                    "Interrupted waiting for process!");
-         }
-      }
-   }
+    private void eventHelpAbout(ActionEvent e, JMenuItem item, String print, String status) {
+        if (e.getSource() == item) {
+            hardwareStore.sysPrint(print);
+
+            Runtime rt = Runtime.getRuntime();
+            String[] callAndArgs;
+
+            switch (status) {
+                case "about" -> {
+                    File hd = new File("HW_Tutorial.html");
+                    callAndArgs = new String[]{"c:\\Program Files\\Internet Explorer\\IEXPLORE.exe", "" + hd.getAbsolutePath()};
+                }
+                case "help" -> callAndArgs = new String[]{"c:\\Program Files\\Internet Explorer\\IEXPLORE.exe",
+                        "http://www.sumtotalz.com/TotalAppsWorks/ProgrammingResource.html"};
+                default -> throw new IllegalStateException("Unexpected value: " + status);
+            }
+
+            try {
+                Process child = rt.exec(callAndArgs);
+                child.waitFor();
+                hardwareStore.sysPrint("Process exit code is: " +
+                        child.exitValue());
+            } catch (IOException e2) {
+                System.err.println(
+                        "IOException starting process!");
+            } catch (InterruptedException e3) {
+                System.err.println(
+                        "Interrupted waiting for process!");
+            }
+        }
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == hardwareStore.geteMI()) hardwareStore.cleanup();
+        eventItem(e, hardwareStore.getLmMI(), "The Lawn Mower menu Item was selected.\n", "Lawn Mowers");
+        eventItem(e, hardwareStore.getLmtMI(), "The Lawn Mower Tractor menu Item was selected.\n", "Lawn Tractor Mowers");
+        eventItem(e, hardwareStore.getHdMI(), "The Hand Drill Tools menu Item was selected.\n", "Hand Drill Tools");
+        eventItem(e, hardwareStore.getDpMI(), "The Drill Press Power Tools menu Item was selected.\n", "Drill Press Power Tools");
+        eventItem(e, hardwareStore.getCsMI(), "The Circular Saws Tools menu Item was selected.\n", "Circular Saws");
+        eventItem(e, hardwareStore.getHamMI(), "The Hammer menu Item was selected.\n", "Hammers");
+        eventItem(e, hardwareStore.getTabMI(), "The Table Saws menu Item was selected.\n", "Table Saws");
+        eventItem(e, hardwareStore.getBandMI(), "The Band Saws menu Item was selected.\n", "Band Saws");
+        eventItem(e, hardwareStore.getSandMI(), "The Sanders menu Item was selected.\n", "Sanders");
+        eventItem(e, hardwareStore.getStapMI(), "The Staplers menu Item was selected.\n", "Staplers");
+        eventItem(e, hardwareStore.getWdvMI(), "The Wet-Dry Vacs menu Item was selected.\n", "");
+        eventItem(e, hardwareStore.getSccMI(), "The Storage, Chests & Cabinets menu Item was selected.\n", "");
+        eventItem(e, hardwareStore.getListAllMI(), "The List All menu Item was selected.\n", "");
+        eventDebug(e, hardwareStore.getDebugON(), "Debugging for this execution is turned on.\n", true);
+        eventDebug(e, hardwareStore.getDebugOFF(), "Debugging for this execution is turned off.\n", false);
+        eventOptions(e, hardwareStore.getDeleteMI(), "The Delete Record Dialog was made visible.\n", "delete");
+        eventOptions(e, hardwareStore.getUpdateMI(), "The Update menu Item was selected.\n", "update");
+        eventOptions(e, hardwareStore.getAddMI(), "The Add menu Item was selected.\n", "add");
+        eventHelpAbout(e, hardwareStore.getHelpHWMI(), "The Help menu Item was selected.\n", "help");
+        eventHelpAbout(e, hardwareStore.getAboutHWMI(), "The About menu Item was selected.\n", "about");
+
+    }
 }
