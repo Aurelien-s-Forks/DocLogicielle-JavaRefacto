@@ -8,7 +8,8 @@ public class WindowHandler extends WindowAdapter {
    public WindowHandler(HardwareStore s) {
       h = s;
    }
-
+   
+   @Override
    public void windowClosing(WindowEvent e) {
       h.cleanup();
    }
